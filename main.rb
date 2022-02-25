@@ -16,25 +16,29 @@ set title: 'Fractale'
 set background: 'black'
 set width: sizewx, height: sizewy
 
+
 map = []
-map[0] = [1,1,1,1,1,1,1]
-map[1] = [1,0,0,0,0,0,1]
-map[2] = [1,0,1,1,0,0,1]
-map[3] = [1,0,1,1,0,0,1]
-map[4] = [1,0,0,0,0,0,1]
-map[5] = [1,0,0,0,0,1,1]
-map[6] = [1,1,1,1,1,1,1]
+map[0] = [1,1,1,1,1,1,1,1,1,1]
+map[1] = [1,0,0,0,0,0,0,0,0,1]
+map[2] = [1,0,1,1,0,0,0,0,0,1]
+map[3] = [1,0,1,1,0,0,0,0,0,1]
+map[4] = [1,0,0,0,0,0,0,0,0,1]
+map[5] = [1,0,0,0,0,0,0,0,0,1]
+map[6] = [1,1,1,1,0,0,0,1,0,1]
+map[7] = [1,0,0,0,0,0,0,0,0,1]
+map[8] = [1,1,1,1,1,1,1,1,1,1]
 
 map = Map.new(map)
 #p map
 
-camera = Camera.new(3,3,270,80)
+camera = Camera.new(4,5,270,90)
 
 minimap = Minimap.new(0,0,200,2)
 monde = Monde.new(camera,map)
 
 minimap.draw(monde)
-
+render = Renderer.new(0.5)
+render.render3D(monde)
 
 on :key_held do |event|
     #p event
@@ -53,17 +57,19 @@ on :key_held do |event|
         camera.y += Math.sin(to_rad(camera.angle-90))*0.03
     end
     minimap.updateCam(camera)
+    render.render3D(monde)
 end
 
 on :key_held do |event|
     #p event
     case event.key
     when 'right'
-        camera.angle += 2
+        camera.incAngle(2)
     when 'left'
-        camera.angle -= 2
+        camera.incAngle(-2)
     end
     minimap.updateCam(camera)
+    render.render3D(monde)
 end
 
 show

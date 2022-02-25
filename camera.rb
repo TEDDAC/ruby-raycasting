@@ -10,4 +10,12 @@ class Camera
         @angle = 360-angle #sens trigonométrique
         @fov = fov
     end
+
+    def incAngle(angle)
+        @angle += angle
+        @angle -= 360 if @angle > 360
+        @angle += 360 if @angle < 0
+
+        #puts @angle
+    end
 end
