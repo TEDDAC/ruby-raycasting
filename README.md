@@ -4,7 +4,7 @@ Avant d'exécuter le programme, il faut que vous installiez la gem ruby2d. Une f
 
 Pour controller la camera, il suffit d'utiliser les flèches droite et gauche pour tourner et ZQSD pour vous déplacer.
 
-![Screenshoot](screenshot.png)
+![Screenshoot](screenshoot.png)
 
 ----
 TEDDAC
